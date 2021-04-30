@@ -1,29 +1,24 @@
 package com.example.sunburst
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.example.sunburst.adapter.ItemAdapter
+import com.example.sunburst.data.Datasource
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var rollButton: Button = findViewById(R.id.button)
-        rollButton.setOnClickListener{ rollDice() }
-    }
+        // Initialize data.
+        val myDataset = Datasource().loadStrings()
 
-    private fun rollDice() {
-        val dice = Dice(6)
-        val diceRoll = dice.roll()
-        val resultTextView: TextView = findViewById(R.id.textView)
-        resultTextView.text = diceRoll.toString()
-    }
-}
+        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+        recyclerView.adapter = ItemAdapter(this, myDataset)
 
-class Dice(val numSides: Int) {
-    fun roll(): Int {
-        return (1..numSides).random()
+        // Use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        recyclerView.setHasFixedSize(true)
     }
 }
