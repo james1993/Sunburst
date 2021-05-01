@@ -1,2 +1,2 @@
 # Sunburst
-Interactive educational Android application for teaching people things that interest me
+Interactive educational Android application for teaching people metaphysics, epistemology, ethics, and philosophy of mind inspired by the Thomistic system.
